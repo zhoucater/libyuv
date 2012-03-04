@@ -23,8 +23,8 @@ namespace libyuv {
 extern "C" int ArmCpuCaps(const char* cpuinfoname);
 
 TEST_F(libyuvTest, TestLinuxNeon) {
-  EXPECT_EQ(0, ArmCpuCaps("unit_test/testdata/arm_v7.txt"));
-  EXPECT_EQ(kCpuHasNEON, ArmCpuCaps("unit_test/testdata/tegra3.txt"));
+  EXPECT_EQ(0, ArmCpuCaps("testdata/arm_v7.txt"));
+  EXPECT_EQ(kCpuHasNEON, ArmCpuCaps("testdata/tegra3.txt"));
 }
 
 TEST_F(libyuvTest, TestVersion) {
