@@ -141,7 +141,7 @@ class MJpegDecoder {
   };
 
   // Methods that are passed to jpeglib.
-  static int fill_input_buffer(jpeg_decompress_struct *cinfo);
+  static unsigned char fill_input_buffer(jpeg_decompress_struct *cinfo);
   static void init_source(jpeg_decompress_struct *cinfo);
   static void skip_input_data(jpeg_decompress_struct *cinfo, long num_bytes);
   static void term_source(jpeg_decompress_struct *cinfo);

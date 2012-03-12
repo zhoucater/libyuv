@@ -76,7 +76,7 @@ static uint32 SumSquareError_NEON(const uint8* src_a, const uint8* src_b,
   return sse;
 }
 
-#elif defined(_M_IX86) && !defined(YUV_DISABLE_ASM)
+#elif defined(_M_IX86_NOMINGW) && !defined(YUV_DISABLE_ASM)
 #define HAS_SUMSQUAREERROR_SSE2
 __declspec(naked)
 static uint32 SumSquareError_SSE2(const uint8* src_a, const uint8* src_b,

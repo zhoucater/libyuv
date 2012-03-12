@@ -61,7 +61,7 @@ int I420Copy(const uint8* src_y, int src_stride_y,
   return 0;
 }
 
-#if defined(_M_IX86) && !defined(YUV_DISABLE_ASM)
+#if defined(_M_IX86_NOMINGW) && !defined(YUV_DISABLE_ASM)
 #define HAS_HALFROW_SSE2
 __declspec(naked)
 static void HalfRow_SSE2(const uint8* src_uv, int src_uv_stride,
@@ -186,7 +186,7 @@ int I422ToI420(const uint8* src_y, int src_stride_y,
 #define HAS_SCALEROWDOWN2_NEON
 void ScaleRowDown2Int_NEON(const uint8* src_ptr, int src_stride,
                            uint8* dst, int dst_width);
-#elif (defined(_M_IX86) || defined(__x86_64__) || defined(__i386__)) && \
+#elif (defined(_M_IX86_NOMINGW) || defined(__x86_64__) || defined(__i386__)) && \
     !defined(YUV_DISABLE_ASM)
 void ScaleRowDown2Int_SSE2(const uint8* src_ptr, int src_stride,
                            uint8* dst_ptr, int dst_width);
@@ -458,7 +458,7 @@ int M420ToI420(const uint8* src_m420, int src_stride_m420,
                     width, height);
 }
 
-#if defined(_M_IX86) && !defined(YUV_DISABLE_ASM)
+#if defined(_M_IX86_NOMINGW) && !defined(YUV_DISABLE_ASM)
 #define HAS_SPLITYUY2_SSE2
 __declspec(naked)
 static void SplitYUY2_SSE2(const uint8* src_yuy2,
@@ -795,7 +795,7 @@ int UYVYToI420(const uint8* src_uyvy, int src_stride_uyvy,
 #define LIBYUV_LITTLE_ENDIAN
 #endif
 // Visual C for x86 defines these
-#elif defined(_M_X64) || defined(_M_IX86)
+#elif defined(_M_X64) || defined(_M_IX86_NOMINGW)
 #define LIBYUV_LITTLE_ENDIAN
 #endif
 

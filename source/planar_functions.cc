@@ -715,7 +715,7 @@ static void SetRows32_NEON(uint8* dst, uint32 v32, int width,
   }
 }
 
-#elif defined(_M_IX86) && !defined(YUV_DISABLE_ASM)
+#elif defined(_M_IX86_NOMINGW) && !defined(YUV_DISABLE_ASM)
 #define HAS_SETROW_X86
 __declspec(naked)
 static void SetRow8_X86(uint8* dst, uint32 v32, int count) {

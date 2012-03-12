@@ -21,7 +21,7 @@ namespace libyuv {
 extern "C" {
 #endif
 
-#if (defined(_M_IX86) || defined(__x86_64__) || defined(__i386__)) && \
+#if (defined(_M_IX86_NOMINGW) || defined(__x86_64__) || defined(__i386__)) && \
     !defined(YUV_DISABLE_ASM)
 #if defined(__APPLE__) && defined(__i386__)
 #define DECLARE_FUNCTION(name)                                                 \
@@ -69,7 +69,7 @@ void TransposeUVWx8_NEON(const uint8* src, int src_stride,
                          int width);
 #endif
 
-#if defined(_M_IX86) && !defined(YUV_DISABLE_ASM)
+#if defined(_M_IX86_NOMINGW) && !defined(YUV_DISABLE_ASM)
 #define HAS_TRANSPOSE_WX8_SSSE3
 __declspec(naked)
 static void TransposeWx8_SSSE3(const uint8* src, int src_stride,

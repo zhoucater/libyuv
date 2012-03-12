@@ -566,7 +566,7 @@ static void ScaleFilterRows_NEON(uint8* dst_ptr,
  */
 
 // Constants for SSE2 code
-#elif (defined(_M_IX86) || defined(__i386__) || defined(__x86_64__)) && \
+#elif (defined(_M_IX86_NOMINGW) || defined(__i386__) || defined(__x86_64__)) && \
     !defined(YUV_DISABLE_ASM)
 #if defined(_MSC_VER)
 #define TALIGN16(t, var) __declspec(align(16)) t _ ## var
@@ -670,7 +670,7 @@ extern "C" TALIGN16(const uint16, scaleab2[8]) =
   { 65536 / 3, 65536 / 3, 65536 / 2, 65536 / 3, 65536 / 3, 65536 / 2, 0, 0 };
 #endif
 
-#if defined(_M_IX86) && !defined(YUV_DISABLE_ASM)
+#if defined(_M_IX86_NOMINGW) && !defined(YUV_DISABLE_ASM)
 
 #define HAS_SCALEROWDOWN2_SSE2
 // Reads 32 pixels, throws half away and writes 16 pixels.

@@ -24,7 +24,7 @@ extern "C" {
 // and vst would select which 2 components to write.  The low level would need
 // to be ARGBToBG, ARGBToGB, ARGBToRG, ARGBToGR
 
-#if defined(_M_IX86) && !defined(YUV_DISABLE_ASM)
+#if defined(_M_IX86_NOMINGW) && !defined(YUV_DISABLE_ASM)
 #define HAS_ARGBTOBAYERROW_SSSE3
 __declspec(naked)
 static void ARGBToBayerRow_SSSE3(const uint8* src_argb,

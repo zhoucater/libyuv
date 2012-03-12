@@ -205,7 +205,7 @@ int I400Copy(const uint8* src_y, int src_stride_y,
 // UYVY - Macro-pixel = 2 image pixels
 // U0Y0V0Y1
 
-#if defined(_M_IX86) && !defined(YUV_DISABLE_ASM)
+#if defined(_M_IX86_NOMINGW) && !defined(YUV_DISABLE_ASM)
 #define HAS_I42XTOYUY2ROW_SSE2
 __declspec(naked)
 static void I42xToYUY2Row_SSE2(const uint8* src_y,
@@ -401,7 +401,7 @@ static void I42xToUYVYRow_C(const uint8* src_y, const uint8* src_u, const uint8*
 #define LIBYUV_LITTLE_ENDIAN
 #endif
 // Visual C for x86 defines these
-#elif defined(_M_X64) || defined(_M_IX86)
+#elif defined(_M_X64) || defined(_M_IX86_NOMINGW)
 #define LIBYUV_LITTLE_ENDIAN
 #endif
 
