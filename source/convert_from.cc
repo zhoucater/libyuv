@@ -515,6 +515,31 @@ int I420ToNV12(const uint8_t* src_y,
                halfwidth, halfheight);
   return 0;
 }
+static int I420ToNV21Inner(const uint8* src_y,
+               int src_stride_y,
+               const uint8* src_u,
+               int src_stride_u,
+               const uint8* src_v,
+               int src_stride_v,
+               uint8* dst_y,
+               int dst_stride_y,
+               uint8* dst_uv,
+               int dst_stride_uv,
+               int width,
+               int height) {
+    if (!src_y || !src_u || !src_v || !dst_y || !dst_uv || width <= 0 ||
+        height == 0) {
+        return -1;
+    }
+    int halfwidth = (width + 1) / 2;
+    int halfheight = height > 0 ? (height + 1) / 2 : (height - 1) / 2;
+    if (dst_y) {
+        CopyPlane(src_y, src_stride_y, dst_y, dst_stride_y, width, height);
+    }
+    MergeUVPlane(src_v, src_stride_v,src_u, src_stride_u, dst_uv, dst_stride_uv,
+                 halfwidth, halfheight);
+    return 0;
+}  
 
 LIBYUV_API
 int I420ToNV21(const uint8_t* src_y,
@@ -529,7 +554,7 @@ int I420ToNV21(const uint8_t* src_y,
                int dst_stride_vu,
                int width,
                int height) {
-  return I420ToNV12(src_y, src_stride_y, src_v, src_stride_v, src_u,
+  return I420ToNV21Inner(src_y, src_stride_y, src_v, src_stride_v, src_u,
                     src_stride_u, dst_y, dst_stride_y, dst_vu, dst_stride_vu,
                     width, height);
 }
